@@ -13,15 +13,16 @@ double f(double x) {
     return pow(x, 6) - x - 1;
 }
 
-// Derivative for plugin
+// Derivative for Newton's method
 double f_prime(double x) {
     return 6 * pow(x, 5) - 1; // Derivative of f
 }
 
 // Bisection Method
-double bisection(double a, double b, double tol, int max_itter) {
+double bisection(double a, double b, double tol, int max_itter, int *iterations) {
     double c;
-    for (int i = 0; i < max_itter; i++) {
+    *iterations = 0; // Initialize iteration count
+    while (*iterations < max_itter) {
         c = (a + b) / 2; // Compute midpoint
         if (f(c) == 0.0) {
             return c; // Root
@@ -31,6 +32,7 @@ double bisection(double a, double b, double tol, int max_itter) {
         } else {
             a = c; // Root is in [c, b]
         }
+        (*iterations)++;
         if (fabs(b - a) < tol) {
             return c; // Convergence
         }
@@ -39,22 +41,25 @@ double bisection(double a, double b, double tol, int max_itter) {
 }
 
 // Newton's Method
-double newton(double x0, double tol, int max_itter) {
+double newton(double x0, double tol, int max_itter, int *iterations) {
     double x1;
-    for (int i = 0; i < max_itter; i++) {
+    *iterations = 0; // Initialize iteration count
+    while (*iterations < max_itter) {
         x1 = x0 - f(x0) / f_prime(x0);
         if (fabs(x1 - x0) < tol) {
             return x1; // Convergence
         }
         x0 = x1;
+        (*iterations)++;
     }
     return x1; // Last approximation
 }
 
 // Secant Method
-double secant(double x0, double x1, double tol, int max_itter) {
+double secant(double x0, double x1, double tol, int max_itter, int *iterations) {
     double x2;
-    for (int i = 0; i < max_itter; i++) {
+    *iterations = 0; // Initialize iteration count
+    while (*iterations < max_itter) {
         if (f(x1) - f(x0) == 0) {
             printf("Error: Division by zero\n");
             return NAN;
@@ -65,6 +70,7 @@ double secant(double x0, double x1, double tol, int max_itter) {
         }
         x0 = x1;
         x1 = x2;
+        (*iterations)++;
     }
     return x2; // Last approximation
 }
@@ -73,6 +79,8 @@ int main() {
     double tol = 0.001;
     int max_itter = 50;
     int option;
+    double root;
+    int iterations;
 
     printf("Select method:\n");
     printf("1: Bisection\n");
@@ -81,26 +89,29 @@ int main() {
     scanf("%d", &option);
 
     switch (option) {
-        case 1: { // Bisection method
+        // Bisection method
+        case 1: { 
             double a = 0.0, b = 2.0; // Initial bounds
             printf("Bisection Solver\n");
-            double root = bisection(a, b, tol, max_itter);
-            printf("Root found: %.5lf\n", root);
+            root = bisection(a, b, tol, max_itter, &iterations);
+            printf("Root found: %.5lf, Iterations taken: %d\n", root, iterations);
             break;
         }
-        case 2: { // Newton's method
+        // Newton's method
+        case 2: { 
             double x0 = 1.0; // Initial guess
             printf("Newton's Solver\n");
-            double root = newton(x0, tol, max_itter);
-            printf("Root found: %.5lf\n", root);
+            root = newton(x0, tol, max_itter, &iterations);
+            printf("Root found: %.5lf, Iterations taken: %d\n", root, iterations);
             break;
         }
-        case 3: { // Secant method
+        // Secant method
+        case 3: { 
             double x0 = 1.0; // Initial guess 1
             double x1 = 1.5; // Initial guess 2
             printf("Secant Solver\n");
-            double root = secant(x0, x1, tol, max_itter);
-            printf("Root found: %.5lf\n", root);
+            root = secant(x0, x1, tol, max_itter, &iterations);
+            printf("Root found: %.5lf, Iterations taken: %d\n", root, iterations);
             break;
         }
         default:
