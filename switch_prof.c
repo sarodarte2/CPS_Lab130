@@ -19,7 +19,6 @@ double f_prime(double x) {
 }
 
 // Bisection Method
-// We are interested on the sign mainly
 double bisection(double a, double b, double tol, int max_itter) {
     double c;
     for (int i = 0; i < max_itter; i++) {
@@ -45,8 +44,7 @@ double newton(double x0, double tol, int max_itter) {
     for (int i = 0; i < max_itter; i++) {
         x1 = x0 - f(x0) / f_prime(x0);
         if (fabs(x1 - x0) < tol) {
-            // Convergence
-            return x1; 
+            return x1; // Convergence
         }
         x0 = x1;
     }
@@ -79,30 +77,35 @@ int main() {
     printf("Select method:\n");
     printf("1: Bisection\n");
     printf("2: Newton\n");
-    prin1tf("3: Secant\n");
+    printf("3: Secant\n");
     scanf("%d", &option);
 
-    if (option == 1) { // Bisection method
-        double a = 0.0, b = 2.0; // Initial bounds
-        printf("Bisection Solver\n");
-        double root = bisection(a, b, tol, max_itter);
-        printf("Root found: %.5lf\n", root);
-    } 
-    else if (option == 2) { // Newton's method
-        double x0 = 1.0; // Initial guess
-        printf("Newton's Solver\n");
-        double root = newton(x0, tol, max_itter);
-        printf("Root found: %.5lf\n", root);
-    } 
-    else if (option == 3) { // Secant method
-        double x0 = 1.0; // Initial guess 1
-        double x1 = 1.5; // Initial guess 2
-        printf("Secant Solver\n");
-        double root = secant(x0, x1, tol, max_itter);
-        printf("Root found: %.5lf\n", root);
-    } 
-    else {
-        printf("Invalid option.\n");
+    switch (option) {
+        case 1: { // Bisection method
+            double a = 0.0, b = 2.0; // Initial bounds
+            printf("Bisection Solver\n");
+            double root = bisection(a, b, tol, max_itter);
+            printf("Root found: %.5lf\n", root);
+            break;
+        }
+        case 2: { // Newton's method
+            double x0 = 1.0; // Initial guess
+            printf("Newton's Solver\n");
+            double root = newton(x0, tol, max_itter);
+            printf("Root found: %.5lf\n", root);
+            break;
+        }
+        case 3: { // Secant method
+            double x0 = 1.0; // Initial guess 1
+            double x1 = 1.5; // Initial guess 2
+            printf("Secant Solver\n");
+            double root = secant(x0, x1, tol, max_itter);
+            printf("Root found: %.5lf\n", root);
+            break;
+        }
+        default:
+            printf("Invalid option.\n");
+            break;
     }
 
     return 0;
