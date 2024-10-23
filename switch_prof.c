@@ -19,6 +19,7 @@ double f_prime(double x) {
 }
 
 // Bisection Method
+// We are interested on the sign mainly
 double bisection(double a, double b, double tol, int max_itter) {
     double c;
     for (int i = 0; i < max_itter; i++) {
@@ -44,7 +45,8 @@ double newton(double x0, double tol, int max_itter) {
     for (int i = 0; i < max_itter; i++) {
         x1 = x0 - f(x0) / f_prime(x0);
         if (fabs(x1 - x0) < tol) {
-            return x1; // Convergence
+            // Convergence
+            return x1; 
         }
         x0 = x1;
     }
@@ -77,7 +79,7 @@ int main() {
     printf("Select method:\n");
     printf("1: Bisection\n");
     printf("2: Newton\n");
-    printf("3: Secant\n");
+    prin1tf("3: Secant\n");
     scanf("%d", &option);
 
     if (option == 1) { // Bisection method
