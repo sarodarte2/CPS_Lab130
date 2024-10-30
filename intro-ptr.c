@@ -10,7 +10,7 @@ void swap(int *ptr2a, int *ptr2b) { //* stands for a dereferencing operator it i
     int temp = *ptr2a;  // Use a temporary variable to hold the value
     *ptr2a = *ptr2b;    // Swap the values
     *ptr2b = temp;
-    printf("3. USING POINTERS swap function prints: a= %d, b=%d \n", *ptr2a, *ptr2b);   
+    printf("3. USING POINTERS swap function prints: a=%d, b=%d \n", *ptr2a, *ptr2b);   
 }
 
 int main() {
