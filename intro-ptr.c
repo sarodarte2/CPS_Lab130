@@ -1,4 +1,9 @@
 #include <stdio.h>
+/*
+write a C program that computes the product of two integers (provided by the user)
+ by calling a function mult.
+*/
+
 
 // Function to multiply two integers
 int mult(int a, int b) {
