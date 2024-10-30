@@ -6,7 +6,7 @@ int mult(int a, int b) {
 }
 
 // Function to swap two integers using pointers
-void swap(int *ptr2a, int *ptr2b) {
+void swap(int *ptr2a, int *ptr2b) { //* stands for a dereferencing operator it is a unary operator.
     int temp = *ptr2a;  // Use a temporary variable to hold the value
     *ptr2a = *ptr2b;    // Swap the values
     *ptr2b = temp;
