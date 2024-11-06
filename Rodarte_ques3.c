@@ -127,3 +127,11 @@ int main() {
 
     return 0;
 }
+
+/*
+Answers for the file read provided:
+Mean: 39.750000
+Median: 37.000000
+Mode: 0
+Standard Deviation: 35.002678
+*/
