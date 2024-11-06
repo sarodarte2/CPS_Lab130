@@ -3,6 +3,34 @@
 #include <math.h>
 
 #define MAX_SCORES 100 // You can adjust this!
+/*
+#include<stdio.h>
+//This program calculates the average of the scores of 5 students.
+int main(){
+	//int n = 5;
+	//int max_student_size = 1000;
+	int x[5];//array of variable length. 
+	//x[1]= x[2]= wrong because 
+	// indexing begins at 0. x[0] and x[1].
+	double avg=-5.0;
+	x[0]= 10;
+	x[1]= 7;
+	x[2]= 5;
+	x[3]= 9;
+	x[4]= 10;
+	double sum = 0.0;//sum 41
+	for (int i = 0 ;i < 5; ++i)
+		{
+		sum +=x[i];
+		printf("for i = %d, sum = %lf \n ", i, sum );
+			//more for checking if the right sum is being 
+			//computed.
+		} // for-loop
+	avg = sum/5;
+	printf("the average score is: %lf \n", avg);
+}
+*/
+
 
 /*
 a. This C code initializes an array x with five integer scores.
@@ -11,10 +39,10 @@ a. This C code initializes an array x with five integer scores.
 
 */
 
-//02avg.c code logic used to build the following code. 
+//02avg.c code logic was used to build the following code. 
 void calculateStatistics(double scores[], int size) {
     double sum = 0.0, mean, variance = 0.0, stddev;
-    // Frequency assuming the max score is 100?
+    // Frequency assuming the max score is 100 cause its a grade. 
     int frequency[101] = {0};
     int mode = scores[0], maxCount = 0;
 
@@ -66,19 +94,21 @@ void calculateStatistics(double scores[], int size) {
     printf("Standard Deviation: %lf\n", stddev);
 }
 
-// Code from 04use-read.c provided in-class.
+// Code from 04use-read.c (file-reader.c) provided in-class.
 int main() {
     double scores[MAX_SCORES];
     int count = 0;
 
     // Open the file for reading
-    FILE* in_file = fopen("scores-data.txt", "r");
-    if (!in_file) {
+    FILE* in_file = fopen("scores-data.txt", "r"); //only open a pre-exisiting file in read mode. 
+    if (!in_file) { // equivalent to saying if ( in_file == NULL ) 
         printf("Oops, file can't be read\n");
         exit(-1);
     }
 
     // Read scores from the file
+    // attempt to read the next line and store 
+    // the value in the "number" variable 
     while (fscanf(in_file, "%lf", &scores[count]) == 1) {
         count++;
         if (count >= MAX_SCORES) {
