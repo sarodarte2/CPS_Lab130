@@ -17,7 +17,7 @@ int main() {
     int dog[SIZE];  // Declare an array to store 10 integers
     int input;
 
-    // Prompt the user to enter 10 integers
+    // Prompt user to enter 10 ints
     printf("Enter 10 integers:\n");
     for (int i = 0; i < SIZE; ++i) {
 	while (1) {
