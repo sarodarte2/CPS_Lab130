@@ -122,8 +122,6 @@ int main() {
     }
 
     // Read scores from the file
-    // attempt to read the next line and store 
-    // the value in the "number" variable 
     while (fscanf(in_file, "%lf", &scores[count]) == 1) {
         count++;
         if (count >= MAX_SCORES) {
