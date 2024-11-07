@@ -143,9 +143,9 @@ int main() {
 
 /*
 Answers for the file read provided:
+Modes: 0 
+Median: 29.000000 and 45.000000
 Mean: 39.750000
-Median: 37.000000
-Mode: 0
 Standard Deviation: 35.002678
 */ 
 
