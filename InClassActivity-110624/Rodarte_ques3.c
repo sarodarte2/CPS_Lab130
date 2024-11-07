@@ -46,18 +46,31 @@ void calculateStatistics(double scores[], int size) {
     int frequency[101] = {0};
     int mode = scores[0], maxCount = 0;
 
-    // Calculate sum and frequency for mode
+    // Calculate sum and frequency for mode / each score
     for (int i = 0; i < size; i++) {
         sum += scores[i];
         frequency[(int)scores[i]]++;
         if (frequency[(int)scores[i]] > maxCount) {
             maxCount = frequency[(int)scores[i]];
-            mode = (int)scores[i];
         }
     }
 
     // Calculate mean
     mean = sum / size;
+
+    // Calculate mode (Cause there could be more than 1)
+    printf("Modes: ");
+    int foundMode = 0;
+    for (int i = 0; i < 101; i++) {
+        if (frequency[i] == maxCount && maxCount > 1) {  // More than one occurrence
+            printf("%d ", i);
+            foundMode = 1;
+        }
+    }
+    if (!foundMode) {
+        printf("No mode (all scores are unique)");
+    }
+    printf("\n");
 
     // Calculate variance
     for (int i = 0; i < size; i++) {
@@ -82,9 +95,11 @@ void calculateStatistics(double scores[], int size) {
 
     double median;
     if (size % 2 == 0) {
-        median = (scores[size / 2 - 1] + scores[size / 2]) / 2.0;
+        // If even number of scores, print two middle values
+        printf("%lf and %lf\n", scores[size / 2 - 1], scores[size / 2]);
     } else {
-        median = scores[size / 2];
+        // If odd, print the middle value
+        printf("%lf\n", scores[size / 2]);
     }
 
     // Output results
