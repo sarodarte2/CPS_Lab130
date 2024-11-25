@@ -3,6 +3,10 @@
 #include <math.h>
 #include <cblas.h>
 
+// Credit to Dr. Sharma's code and suggestions to change the code.
+// Loop needs to go into the interior.
+// Stop at N-1 in void diff. 
+
 /*
   void diff(double* u, int N, double dx, double* d2u)
 
@@ -15,10 +19,10 @@
   d2u: pointer to output array
 
   Outputs: 
-  d2u: contains the second-order finite difference approximation
+  d2u: the second-order finite difference approximation
 */
 void diff(double* u, int N, double dx, double* d2u) {
-    for(int i = 1; i <= N - 2; ++i) {
+    for(int i = 1; i <= N - 2; ++i) { //Could be N-1?
         d2u[i] = (u[i + 1] - 2.0 * u[i] + u[i - 1]) / (dx * dx);
     }
 }
@@ -34,7 +38,7 @@ void diff(double* u, int N, double dx, double* d2u) {
   dx: the space step size
 
   Outputs: 
-  u: contains data for a sin function
+  u: data for a sin function
 */
 void init(double* u, int N, double dx) {
     for (int i = 0; i <= N; ++i) {
